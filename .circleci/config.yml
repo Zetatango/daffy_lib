@@ -4,7 +4,7 @@ jobs:
     parallelism: 1
     working_directory: ~/daffy_lib
     environment:
-      - CODECOV_TOKEN: 4d03ca51-5054-4858-87c7-b37c376ffb6a
+      - CODECOV_TOKEN: 8e290fba-ea5d-444f-b922-72e013c22f96
     docker:
       - image: circleci/ruby:2.6.5
 

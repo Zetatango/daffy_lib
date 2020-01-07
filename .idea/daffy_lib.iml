@@ -26,10 +26,13 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v3.8.0, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.8.0, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop (v0.61.1, chruby: ruby-2.3.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop-rspec (v1.30.1, chruby: ruby-2.3.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rubocop_runner (v2.1.0, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.10.0, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov (v0.16.1, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov-html (v0.10.2, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.20.3, chruby: ruby-2.3.7) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="timecop (v0.9.1, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v1.4.0, chruby: ruby-2.3.7) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="url (v0.3.2, chruby: ruby-2.3.7) [gem]" level="application" />
   </component>
