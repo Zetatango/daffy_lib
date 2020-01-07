@@ -1,7 +1,4 @@
-Build Status:
-
-Code Coverage:
-
+[![CircleCI](https://circleci.com/gh/Zetatango/daffy_lib.svg?style=svg)](https://circleci.com/gh/Zetatango/daffy_lib) [![codecov](https://codecov.io/gh/Zetatango/porky_lib/branch/master/graph/badge.svg?token=WxED9350q4)](https://codecov.io/gh/Zetatango/porky_lib) [![Gem Version](https://badge.fury.io/rb/daffy_lib.svg)](https://badge.fury.io/rb/daffy_lib) 
 # DaffyLib
 
 This gem is a caching encryptor.  (Improve explanation later.)
@@ -34,5 +31,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/daffy_lib.
+Bug reports and pull requests are welcome on GitHub at https://github.com/Zetatango/daffy_lib.
 
