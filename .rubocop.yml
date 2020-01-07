@@ -1,0 +1,59 @@
+require:
+  - rubocop-rspec
+
+AllCops:
+  Exclude:
+    - bin/*
+    - db/**/*.rb
+    - node_modules/**/*
+    - output/**/*
+    - vendor/**/*
+  TargetRubyVersion: 2.6.5
+  RSpec:
+    Patterns:
+      - _spec.rb
+      - "(?:^|/)spec/"
+    SpecTypes:
+      Feature: 'spec/features/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Security/MarshalLoad:
+  Enabled: true
+
+Security/Eval:
+  Enabled: true
+
+Security/YAMLLoad:
+  Enabled: true
+
+Security/JSONLoad:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 160
+
+Metrics/ClassLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/MethodLength:
+  Max: 50
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/ExampleLength:
+  Max: 10

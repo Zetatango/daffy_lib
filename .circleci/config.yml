@@ -1,0 +1,66 @@
+version: 2
+jobs:
+  build:
+    parallelism: 1
+    working_directory: ~/daffy_lib
+    environment:
+      - CODECOV_TOKEN: 4d03ca51-5054-4858-87c7-b37c376ffb6a
+    docker:
+      - image: circleci/ruby:2.6.5
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          name: Restore bundle cache
+          keys:
+            - daffy_lib-bundle-{{ checksum "Gemfile.lock" }}
+            - daffy_lib-bundle-
+
+      - run:
+          name: Install latest bundler
+          command: gem install bundler
+
+      - run:
+          name: Update bundler
+          command: bundle update --bundler
+
+      - run:
+          name: Bundle Install
+          command: bundle install
+
+      - save_cache:
+          name: Store bundle cache
+          key: daffy_lib-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Run rubocop
+          command: |
+            bundle exec rubocop --out test_results/rubocop.txt --format fuubar --require rubocop-rspec --config .rubocop.yml
+
+      - run:
+          name: Run bundle-audit
+          command: |
+            bundle exec bundle-audit check --update
+
+      - run:
+          name: Run rspec tests
+          command: |
+            bundle exec rspec \
+              --profile 10 \
+              --format RspecJunitFormatter \
+              --out test_results/rspec.xml \
+              --format progress
+
+      - store_test_results:
+          path: test_results
+
+      - store_artifacts:
+          path: test_results
+          prefix: tests
+
+      - store_artifacts:
+          path: coverage
+          prefix: coverage
