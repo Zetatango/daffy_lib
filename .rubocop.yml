@@ -32,7 +32,7 @@ Security/YAMLLoad:
 Security/JSONLoad:
   Enabled: true
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 160
 
 Metrics/ClassLength:
