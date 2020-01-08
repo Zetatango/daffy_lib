@@ -45,6 +45,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-performance (1.5.2)
+      rubocop (>= 0.71.0)
     rubocop-rspec (1.37.1)
       rubocop (>= 0.68.1)
     rubocop_runner (2.2.0)
@@ -71,6 +73,7 @@ DEPENDENCIES
   rspec
   rspec_junit_formatter
   rubocop
+  rubocop-performance
   rubocop-rspec
   rubocop_runner
   simplecov
