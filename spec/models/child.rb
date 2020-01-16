@@ -18,16 +18,4 @@ class Child < DaffyLib::ApplicationRecord
 
   has_guid 'c'
   validates_with DaffyLib::StringValidator, fields: %i[guid]
-
-  def generate_partition_guid
-    return partition_guid if partition_guid.present?
-
-    self.partition_guid = provider_partition_guid
-  end
-
-  def generate_encryption_epoch
-    return encryption_epoch if encryption_epoch.present?
-
-    self.encryption_epoch = DaffyLib::KeyManagementService.encryption_key_epoch(Time.now)
-  end
 end

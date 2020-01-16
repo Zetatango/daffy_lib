@@ -10,11 +10,15 @@ module DaffyLib::HasEncryptedAttributes
   end
 
   def generate_partition_guid
-    raise NoMethodError
+    return partition_guid if partition_guid.present?
+
+    self.partition_guid = provider_partition_guid
   end
 
   def generate_encryption_epoch
-    raise NoMethodError
+    return encryption_epoch if encryption_epoch.present?
+
+    self.encryption_epoch = DaffyLib::KeyManagementService.encryption_key_epoch(Time.now)
   end
 
   private
