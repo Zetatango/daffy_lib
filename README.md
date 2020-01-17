@@ -27,7 +27,7 @@ The `User` class will need to `include DaffyLib::PartitionProvider` and implemen
 
 The `User::Attribute` class will need to `include DaffyLib::PartitionProvider` as well as `include DaffyLib::HasEncryptedAttributes`.  It will need to declare `partition_provider :user`.  
 
-It then needs to implement a `generate_partition_guid` which returns the linked `User`'s `guid`, as well as a `generate_encryption_epoch` method which defines the encryption epoch.  The suggested implementations are:
+There are default implementations of `generate_partition_guid` which returns the linked `User`'s `guid`, as well as a `generate_encryption_epoch` method which defines the encryption epoch, which are the following.
 
   ```
   def generate_partition_guid
@@ -42,6 +42,8 @@ It then needs to implement a `generate_partition_guid` which returns the linked 
     self.encryption_epoch = DaffyLib::KeyManagementService.encryption_key_epoch(Time.now)
   end
   ```
+  
+These work for the general case of a model with encrypted attributes that has a partition provider other than itself, and for an encryption epoch period of 1 year.  They can be overriden if necessary.
 
 Now suppose the `User::Attributes` has a `values` field to be encrypted.  One declares
 
