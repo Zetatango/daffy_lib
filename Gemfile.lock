@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    daffy_lib (0.1.1)
+    daffy_lib (0.1.2)
       porky_lib
       rails
       redis
@@ -68,7 +68,7 @@ GEM
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
     aws-eventstream (1.0.3)
-    aws-partitions (1.263.0)
+    aws-partitions (1.265.0)
     aws-sdk-core (3.89.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -102,7 +102,7 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
-    ffi (1.11.3)
+    ffi (1.12.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     i18n (1.7.1)
