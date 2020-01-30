@@ -66,46 +66,11 @@ t.index [:guid], name: :index_encryption_keys_on_guid, unique: true
 t.index [:partition_guid, :key_epoch], name: :index_encryption_keys, unique: true
 
 ```
-Next, if the models do not have existing records, one can run `rake db:migrate:add_encryption_fields[modelname]` to add the `partition_guid` and `encryption_epoch` columns.
+Next, run `rake db:migrate:add_encryption_fields['modelname']` to add the `partition_guid` and `encryption_epoch` columns to each model.
 
-However, if there may already be existing records, then the `generate_partition_guid` and `generate_encryption_epoch` methods need to be invoked before the new columns can be set to required.  Below is a sample migration file for our example above, where one should replace `models` with their own.
-```
-  def up
-    models = %i[users users/attributes]
+Run `rake generate_encryption_attributes['modelname','limit']` to populate existing records of each model with the encryption attributes.  The limit specifies the maximum number of records updated per execution; a limit of 0 means no limit.
 
-    models.each do |model|
-
-      model_classname = model.to_s.camelize.singularize.constantize
-      model_tablename = model.to_s.gsub('/', '_')
-
-      add_column model_tablename, :partition_guid, :string
-      add_column model_tablename, :encryption_epoch, :datetime
-
-      model_classname.reset_column_information
-      model_classname.find_each do |record|
-        record.generate_partition_guid
-        record.generate_encryption_epoch
-
-        record.save!(validate: false)
-      end
-
-      change_column model_tablename, :partition_guid, :string, null: false
-      change_column model_tablename, :encryption_epoch, :datetime, null: false
-    end
-  end
-
-  def down
-    models = %i[users users/attributes]
-
-    models.each do |model|
-      model_tablename = model.to_s.gsub('/', '_')
-
-      remove_column model_tablename, :partition_guid
-      remove_column model_tablename, :encryption_epoch
-    end
-  end
-end
-```
+Finally, once existing records have been populated, it is advisable to perform a final migration to set `partition_guid` and `encryption_epoch` columns to mandatory.
 
 
 ## Development
