@@ -65,6 +65,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
   describe '#encrypt' do
     encryption_params.each do |param|
+      # rubocop:disable RSpec/RepeatedDescription
       it "raises an InvalidParameterException when #{param} is nil" do
         expect do
           caching_encryptor.zt_encrypt(*generate_invalid_encrypt_params(param, nil))
@@ -76,6 +77,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
           caching_encryptor.zt_encrypt(*generate_invalid_encrypt_params(param, ''))
         end.to raise_exception(DaffyLib::CachingEncryptor::InvalidParameterException)
       end
+      # rubocop:enable RSpec/RepeatedDescription
     end
 
     it 'raises an EncryptionFailedException on KeyManagementService InvalidParameterException' do
@@ -135,6 +137,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
   describe '#decrypt' do
     decryption_params.each do |param|
+      # rubocop:disable RSpec/RepeatedDescription
       it "raises an InvalidParameterException when #{param} is nil" do
         expect do
           caching_encryptor.zt_decrypt(*generate_invalid_decrypt_params(param, nil))
@@ -146,6 +149,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
           caching_encryptor.zt_decrypt(*generate_invalid_decrypt_params(param, ''))
         end.to raise_exception(DaffyLib::CachingEncryptor::InvalidParameterException)
       end
+      # rubocop:enable RSpec/RepeatedDescription
     end
 
     it 'raises a DecryptionFailedException on a JSON parse error' do
