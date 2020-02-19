@@ -65,7 +65,6 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
   describe '#encrypt' do
     encryption_params.each do |param|
-      # rubocop:disable RSpec/RepeatedDescription
       it "raises an InvalidParameterException when #{param} is nil" do
         expect do
           caching_encryptor.zt_encrypt(*generate_invalid_encrypt_params(param, nil))
@@ -77,7 +76,6 @@ RSpec.describe DaffyLib::CachingEncryptor do
           caching_encryptor.zt_encrypt(*generate_invalid_encrypt_params(param, ''))
         end.to raise_exception(DaffyLib::CachingEncryptor::InvalidParameterException)
       end
-      # rubocop:enable RSpec/RepeatedDescription
     end
 
     it 'raises an EncryptionFailedException on KeyManagementService InvalidParameterException' do
@@ -137,7 +135,6 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
   describe '#decrypt' do
     decryption_params.each do |param|
-      # rubocop:disable RSpec/RepeatedDescription
       it "raises an InvalidParameterException when #{param} is nil" do
         expect do
           caching_encryptor.zt_decrypt(*generate_invalid_decrypt_params(param, nil))
@@ -149,7 +146,6 @@ RSpec.describe DaffyLib::CachingEncryptor do
           caching_encryptor.zt_decrypt(*generate_invalid_decrypt_params(param, ''))
         end.to raise_exception(DaffyLib::CachingEncryptor::InvalidParameterException)
       end
-      # rubocop:enable RSpec/RepeatedDescription
     end
 
     it 'raises a DecryptionFailedException on a JSON parse error' do
@@ -162,7 +158,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
       expect { caching_encryptor.zt_decrypt(*decryption_args) }.to raise_exception(DaffyLib::CachingEncryptor::DecryptionFailedException)
     end
 
-    # rubocop:disable ExampleLength
+    # rubocop:disable RSpec/ExampleLength
     it 'raises a DecryptionFailedException on an EncryptionKey not found error' do
       decryption_args = [{
         value: {
@@ -195,7 +191,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
       expect(PorkyLib::Symmetric.instance).to have_received(:decrypt)
     end
-    # rubocop:enable ExampleLength
+    # rubocop:enable RSpec/ExampleLength
 
     it 'raises a DecryptionFailedException on KeyManagementService InvalidParameterException' do
       allow(DaffyLib::KeyManagementService).to receive(:new).and_raise(DaffyLib::KeyManagementService::InvalidParameterException)
