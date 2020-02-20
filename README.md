@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Zetatango/daffy_lib.svg?style=svg)](https://circleci.com/gh/Zetatango/daffy_lib) [![codecov](https://codecov.io/gh/Zetatango/daffy_lib/branch/master/graph/badge.svg?token=WxED9350q4)](https://codecov.io/gh/Zetatango/daffy_lib) [![Gem Version](https://badge.fury.io/rb/daffy_lib.svg)](https://badge.fury.io/rb/daffy_lib) 
+[![CircleCI](https://circleci.com/gh/Zetatango/daffy_lib.svg?style=svg)](https://circleci.com/gh/Zetatango/daffy_lib) [![codecov](https://codecov.io/gh/Zetatango/daffy_lib/branch/master/graph/badge.svg?token=WxED9350q4)](https://codecov.io/gh/Zetatango/daffy_lib) [![Gem Version](https://badge.fury.io/rb/daffy_lib.svg)](https://badge.fury.io/rb/daffy_lib)
 # DaffyLib
 
 This gem is a caching encryptor which improves performance when encrypting/decrypting large amounts of data.  It will keep a plaintext key cached for a given amount of time, as well as provide partitioning to allow entire rows to be encrypted with the same key.  Keys are uniquely identified by a pair of a partition guid and an encryption epoch.
@@ -25,7 +25,7 @@ We illustrate usage of this library with an example.  Suppose we have classes `U
 
 The `User` class will need to `include DaffyLib::PartitionProvider` and implement the method `provider_partition_guid` which returns an identifier, for instance a user's `guid`.
 
-The `User::Attribute` class will need to `include DaffyLib::PartitionProvider` as well as `include DaffyLib::HasEncryptedAttributes`.  It will need to declare `partition_provider :user`.  
+The `User::Attribute` class will need to `include DaffyLib::PartitionProvider` as well as `include DaffyLib::HasEncryptedAttributes`.  It will need to declare `partition_provider :user`.
 
 There are default implementations of `generate_partition_guid` which returns the linked `User`'s `guid`, as well as a `generate_encryption_epoch` method which defines the encryption epoch, which are the following.
 
@@ -52,7 +52,7 @@ attr_encrypted :values, encryptor: ZtCachingEncryptor, encrypt_method: :zt_encry
                         encode: true, partition_guid: proc { |object| object.generate_partition_guid },
                         encryption_epoch: proc { |object| object.generate_encryption_epoch }, expires_in: 5.minutes
 ```
-                                         
+
 where the `expires_in` field denotes how long a plaintext key should be kept in cache.
 
 Note further that a class can be its own partition provider; i.e. if `User` itself had encrypted attributes, all the steps above for `User::Attributes` apply, except there is no need to declare `partition_provider`, and the recommended implementation for `generate_partition_guid` is to return (or create) the `guid` of the `User`.
@@ -77,7 +77,33 @@ Finally, once existing records have been populated, it is advisable to perform a
 
 Development on this project should occur on separate feature branches and pull requests should be submitted. When submitting a pull request, the pull request comment template should be filled out as much as possible to ensure a quick review and increase the likelihood of the pull request being accepted.
 
+### Ruby
+
+This application requires:
+
+*   Ruby version: 2.7.0
+
+If you do not have Ruby installed, it is recommended you use ruby-install and chruby to manage Ruby versions.
+
+```bash
+brew install ruby-install chruby
+ruby-install ruby 2.7.0
+```
+
+Add the following lines to ~/.bash_profile:
+
+```bash
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+```
+
+Set Ruby version to 2.7.0:
+
+```bash
+source ~/.bash_profile
+chruby 2.7.0
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/Zetatango/daffy_lib.
-
