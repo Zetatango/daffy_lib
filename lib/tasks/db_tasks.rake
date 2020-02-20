@@ -64,7 +64,7 @@ namespace :db do
 
       model_classname.all.each do |record|
         encrypted_attributes.each do |attribute|
-          value = record.attributes.with_indifferent_access[attribute.to_sym]
+          value = record.send(attribute)
           record.send("#{attribute}=", value) unless value.blank?
         end
 
