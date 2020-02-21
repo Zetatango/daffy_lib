@@ -129,7 +129,7 @@ GEM
     parallel (1.19.1)
     parser (2.7.0.2)
       ast (~> 2.4.0)
-    porky_lib (0.9.5)
+    porky_lib (0.10.0)
       aws-sdk-kms
       aws-sdk-s3
       msgpack
