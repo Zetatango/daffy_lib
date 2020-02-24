@@ -39,5 +39,6 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'porky_lib'
   spec.add_dependency 'rails'
+  spec.add_dependency 'rbnacl'
   spec.add_dependency 'redis'
 end
