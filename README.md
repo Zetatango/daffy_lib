@@ -81,13 +81,19 @@ Development on this project should occur on separate feature branches and pull r
 
 This application requires:
 
-*   Ruby version: 2.7.0
+*   Ruby version: 2.7.1
+
+Ruby 2.7.1 and greater requires OpenSSL 1.1+. To link to Homebrew's upgraded version of OpenSSL, add the following to your bash profile
+
+```shell script
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+```
 
 If you do not have Ruby installed, it is recommended you use ruby-install and chruby to manage Ruby versions.
 
 ```bash
 brew install ruby-install chruby
-ruby-install ruby 2.7.0
+ruby-install ruby 2.7.1
 ```
 
 Add the following lines to ~/.bash_profile:
@@ -97,11 +103,11 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 ```
 
-Set Ruby version to 2.7.0:
+Set Ruby version to 2.7.1:
 
 ```bash
 source ~/.bash_profile
-chruby 2.7.0
+chruby 2.7.1
 ```
 
 ## Contributing
