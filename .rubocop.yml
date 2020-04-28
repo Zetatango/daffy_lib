@@ -9,7 +9,7 @@ AllCops:
     - node_modules/**/*
     - output/**/*
     - vendor/**/*
-  TargetRubyVersion: 2.7.0
+  TargetRubyVersion: 2.7.1
   RSpec:
     Patterns:
       - _spec.rb
