@@ -5,7 +5,7 @@ require 'active_support'
 module DaffyLib::HasGuid
   extend ActiveSupport::Concern
 
-  REGEXP = /^[\w]+_[\w]+$/.freeze
+  REGEXP = /^\w+_\w+$/.freeze
 
   mattr_accessor :registry do
     {}
@@ -46,7 +46,7 @@ module DaffyLib::HasGuid
         end
 
         def self.validation_regexp
-          /^#{has_guid_prefix}_[\w]+$/
+          /^#{has_guid_prefix}_\w+$/
         end
 
         def ensure_guid_does_not_change
