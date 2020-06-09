@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require 'byebug'
 
-RSpec.describe Proxy, type: :model do
+RSpec.describe StringValidator, type: :validator do
   let(:proxy) { create :proxy }
 
   describe 'string validator' do
