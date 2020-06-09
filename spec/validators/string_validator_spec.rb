@@ -4,7 +4,7 @@ require 'spec_helper'
 require 'byebug'
 
 RSpec.describe Proxy, type: :model do
-  let(:proxy) { create :proxy}
+  let(:proxy) { create :proxy }
 
   describe 'string validator' do
     it 'fails validation if attribute contains invalid characters' do
