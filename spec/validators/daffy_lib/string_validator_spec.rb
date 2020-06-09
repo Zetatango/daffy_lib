@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe StringValidator, type: :validator do
+RSpec.describe DaffyLib::StringValidator, type: :validator do
   let(:proxy) { create :proxy }
 
   describe 'string validator' do
