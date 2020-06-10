@@ -9,5 +9,5 @@ class Proxy < DaffyLib::ApplicationRecord
   partition_provider_guid :partition_provider_guid, PartitionProvider
 
   has_guid 'p'
-  validates_with DaffyLib::StringValidator, fields: %i[guid]
+  validates_with DaffyLib::StringValidator, fields: %i[guid value]
 end
