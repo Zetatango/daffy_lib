@@ -87,7 +87,7 @@ GEM
     bundler-audit (0.7.0.1)
       bundler (>= 1.2.0, < 3)
       thor (>= 0.18, < 2)
-    codecov (0.1.17)
+    codecov (0.1.18)
       json
       simplecov
       url
@@ -108,7 +108,7 @@ GEM
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
     jmespath (1.4.0)
-    json (2.3.0)
+    json (2.3.1)
     loofah (2.6.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
