@@ -9,7 +9,7 @@ RSpec.describe DaffyLib::HasGuid do
     duplicate = encryption_key.dup
     expect(duplicate.guid).to be_nil
     expect(duplicate.id).to be_nil
-    duplicate.partition_guid = duplicate.partition_guid + 'a'
+    duplicate.partition_guid = "#{duplicate.partition_guid}a"
     duplicate.save!
     expect(duplicate.guid).to start_with 'dek'
   end
@@ -21,13 +21,13 @@ RSpec.describe DaffyLib::HasGuid do
   it 'blank guid on create generates a guid' do
     duplicate = encryption_key.dup
     duplicate.guid = ''
-    duplicate.partition_guid = duplicate.partition_guid + 'a'
+    duplicate.partition_guid = "#{duplicate.partition_guid}a"
     duplicate.save!
     expect(duplicate.guid).to start_with 'dek'
 
     duplicate = encryption_key.dup
     duplicate.guid = nil
-    duplicate.partition_guid = duplicate.partition_guid + 'b'
+    duplicate.partition_guid = "#{duplicate.partition_guid}b"
     duplicate.save!
     expect(duplicate.guid).to start_with 'dek'
   end
