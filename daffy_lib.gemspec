@@ -11,7 +11,9 @@ Gem::Specification.new do |spec|
   spec.summary       = 'A library for caching encryptor'
   spec.homepage      = 'https://github.com/Zetatango/daffy_lib'
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+  spec.required_ruby_version = '>= 2.7.1'
+
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
   end
   spec.bindir        = 'exe'

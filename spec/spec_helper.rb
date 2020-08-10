@@ -29,7 +29,7 @@ require 'redis'
 
 # setup temporary database for testing
 ActiveRecord::Base.establish_connection adapter: "sqlite3", database: ":memory:"
-load File.dirname(__FILE__) + '/schema.rb'
+load "#{File.dirname(__FILE__)}/schema.rb"
 
 # used to stub Rails.logger
 logger = Logger.new(nil)
