@@ -18,7 +18,7 @@ class DaffyLib::KeyManagementService
     raise InvalidParameterException unless partition_guid.present? && expires_in.present? && cmk_key_id.present?
 
     @partition_guid = partition_guid
-    @expire_in = expires_in
+    @expires_in = expires_in
     @cmk_key_id = cmk_key_id
   end
 
