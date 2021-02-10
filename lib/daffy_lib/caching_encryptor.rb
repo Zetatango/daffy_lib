@@ -2,7 +2,6 @@
 
 class DaffyLib::CachingEncryptor
   class CachingEncryptorException < StandardError; end
-
   class EncryptionFailedException < CachingEncryptorException; end
   class DecryptionFailedException < CachingEncryptorException; end
   class InvalidParameterException < CachingEncryptorException; end
