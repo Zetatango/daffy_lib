@@ -34,12 +34,12 @@ RSpec.describe DaffyLib::HasGuid do
 
   it 'prefix is globally unique' do
     expect do
-      # rubocop:disable RSpec/LeakyConstantDeclaration
+      # rubocop:disable RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
       class OtherEncryptionKeyClass < DaffyLib::ApplicationRecord
         include DaffyLib::HasGuid
         has_guid 'dek'
       end
-      # rubocop:enable RSpec/LeakyConstantDeclaration
+      # rubocop:enable RSpec/LeakyConstantDeclaration, Lint/ConstantDefinitionInBlock
     end.to raise_error ArgumentError
   end
 

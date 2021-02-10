@@ -3,13 +3,14 @@ require:
   - rubocop-performance
 
 AllCops:
+  NewCops: enable
   Exclude:
     - bin/*
     - db/**/*.rb
     - node_modules/**/*
     - output/**/*
     - vendor/**/*
-  TargetRubyVersion: 2.7.1
+  TargetRubyVersion: 2.7.2
   RSpec:
     Patterns:
       - _spec.rb
@@ -58,6 +59,9 @@ RSpec/MultipleExpectations:
 
 RSpec/ExampleLength:
   Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
 
 Style/HashEachMethods:
   Enabled: true
