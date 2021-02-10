@@ -4,13 +4,9 @@ require 'logger'
 
 class DaffyLib::KeyManagementService
   class KeyManagementServiceException < StandardError; end
-
   class InvalidParameterException < KeyManagementServiceException; end
-
   class KeyGenerationException < KeyManagementServiceException; end
-
   class KeyCreateException < KeyManagementServiceException; end
-
   class KeyRetrieveException < KeyManagementServiceException; end
 
   KEY_MANAGEMENT_SERVICE_CACHE_NAMESPACE = :key_management_service

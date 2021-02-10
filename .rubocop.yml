@@ -156,6 +156,9 @@ Style/HashLikeCase:
 Style/RedundantFileExtensionInRequire:
   Enabled: true
 
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+
 Lint/BinaryOperatorWithIdenticalOperands:
   Enabled: true
 
