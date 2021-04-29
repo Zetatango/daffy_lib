@@ -172,7 +172,7 @@ GEM
       rbnacl (>= 3.0.1)
     redis (4.2.5)
     regexp_parser (2.1.1)
-    rexml (3.2.4)
+    rexml (3.2.5)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
