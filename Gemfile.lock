@@ -91,7 +91,7 @@ GEM
     bundler-audit (0.8.0)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
-    codecov (0.5.1)
+    codecov (0.5.2)
       simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
