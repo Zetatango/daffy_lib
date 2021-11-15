@@ -15,19 +15,10 @@ RSpec.describe DaffyLib::CachingEncryptor do
   let(:ciphertext) { SecureRandom.base58(16) }
   let(:nonce) { SecureRandom.base58(16) }
   let(:porkylib_encryption_info) do
-    result = OpenStruct.new
-
-    result.ciphertext = ciphertext
-    result.nonce = nonce
-
-    result
+    instance_double('Encryption Info', ciphertext: ciphertext, nonce: nonce)
   end
   let(:porkylib_decryption_info) do
-    result = OpenStruct.new
-
-    result.plaintext = plaintext
-
-    result
+    instance_double('Decryption Info', plaintext: plaintext)
   end
   let(:encryption_args) do
     [{
