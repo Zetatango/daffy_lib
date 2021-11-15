@@ -42,4 +42,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'porky_lib'
   spec.add_dependency 'rails'
   spec.add_dependency 'redis'
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true'
+  }
 end
