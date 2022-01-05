@@ -30,7 +30,7 @@ module DaffyLib::HasGuid
         validate :ensure_guid_does_not_change
 
         def dup
-          super.tap { |duplicate| duplicate.guid = nil if duplicate.respond_to?('guid=') }
+          super.tap { |duplicate| duplicate.guid = nil if duplicate.respond_to?(:guid=) }
         end
 
         def to_param
