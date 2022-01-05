@@ -48,7 +48,7 @@ RSpec.describe Child, type: :model do
     it 'cannot be changed' do
       expect do
         child = create :child, proxy: proxy
-        child.send("partition_guid=", SecureRandom.base58(16))
+        child.send(:partition_guid=, SecureRandom.base58(16))
         child.save!
       end.to raise_error ActiveRecord::RecordInvalid
     end
@@ -84,7 +84,7 @@ RSpec.describe Child, type: :model do
     it 'cannot be changed' do
       expect do
         child = create :child, proxy: proxy
-        child.send("encryption_epoch=", SecureRandom.base58(16))
+        child.send(:encryption_epoch=, SecureRandom.base58(16))
         child.save!
       end.to raise_error ActiveRecord::RecordInvalid
     end
