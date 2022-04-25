@@ -14,12 +14,16 @@ RSpec.describe DaffyLib::CachingEncryptor do
   let(:plaintext) { SecureRandom.base58(16) }
   let(:ciphertext) { SecureRandom.base58(16) }
   let(:nonce) { SecureRandom.base58(16) }
+
+  # rubocop:disable RSpec/VerifiedDoubleReference
   let(:porkylib_encryption_info) do
     instance_double('Encryption Info', ciphertext: ciphertext, nonce: nonce)
   end
   let(:porkylib_decryption_info) do
     instance_double('Decryption Info', plaintext: plaintext)
   end
+  # rubocop:enable RSpec/VerifiedDoubleReference
+
   let(:encryption_args) do
     [{
       value: plaintext,
