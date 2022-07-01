@@ -170,7 +170,7 @@ GEM
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
-    redis (4.7.0)
+    redis (4.7.1)
     regexp_parser (2.5.0)
     rexml (3.2.5)
     rspec (3.11.0)
