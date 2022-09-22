@@ -94,7 +94,7 @@ GEM
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.1.10)
-    connection_pool (2.2.5)
+    connection_pool (2.3.0)
     crass (1.0.6)
     diff-lcs (1.5.0)
     docile (1.4.0)
@@ -171,9 +171,9 @@ GEM
       ffi
     rbnacl-libsodium (1.0.16)
       rbnacl (>= 3.0.1)
-    redis (5.0.4)
-      redis-client (>= 0.7.4)
-    redis-client (0.8.0)
+    redis (5.0.5)
+      redis-client (>= 0.9.0)
+    redis-client (0.9.0)
       connection_pool
     regexp_parser (2.5.0)
     rexml (3.2.5)
