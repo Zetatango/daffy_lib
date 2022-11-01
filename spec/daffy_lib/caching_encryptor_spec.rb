@@ -9,7 +9,7 @@ RSpec.describe DaffyLib::CachingEncryptor do
   let(:cmk_key_id) { 'alias/zetatango' }
 
   let(:kms) { instance_double(DaffyLib::KeyManagementService) }
-  let(:encryption_key) { create :encryption_key }
+  let(:encryption_key) { create(:encryption_key) }
   let(:plaintext_key) { SecureRandom.base58(16) }
   let(:plaintext) { SecureRandom.base58(16) }
   let(:ciphertext) { SecureRandom.base58(16) }
