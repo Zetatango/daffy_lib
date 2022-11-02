@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe DaffyLib::HasGuid do
-  let(:encryption_key) { create :encryption_key }
+  let(:encryption_key) { create(:encryption_key) }
 
   it 'duplicated encryption_key have no guid but get one when they are saved' do
     duplicate = encryption_key.dup

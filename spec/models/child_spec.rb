@@ -3,10 +3,10 @@
 require 'spec_helper'
 require 'timecop'
 
-RSpec.describe Child, type: :model do
-  let(:partition_provider) { create :partition_provider }
-  let(:proxy) { create :proxy, partition_provider_guid: partition_provider.guid }
-  let(:child) { create :child, proxy: proxy }
+RSpec.describe Child do
+  let(:partition_provider) { create(:partition_provider) }
+  let(:proxy) { create(:proxy, partition_provider_guid: partition_provider.guid) }
+  let(:child) { create(:child, proxy: proxy) }
 
   it 'requires a proxy' do
     expect { described_class.create! }.to raise_exception(ActiveRecord::RecordInvalid)
@@ -34,20 +34,20 @@ RSpec.describe Child, type: :model do
     end
 
     it 'sets a guid on create when it is blank' do
-      child = build :child, proxy: proxy, partition_guid: ''
+      child = build(:child, proxy: proxy, partition_guid: '')
       child.save!
       expect(child.send(:partition_guid)).not_to be_blank
     end
 
     it 'sets a guid on create when it is nil' do
-      child = build :child, proxy: proxy, partition_guid: nil
+      child = build(:child, proxy: proxy, partition_guid: nil)
       child.save!
       expect(child.send(:partition_guid)).not_to be_blank
     end
 
     it 'cannot be changed' do
       expect do
-        child = create :child, proxy: proxy
+        child = create(:child, proxy: proxy)
         child.send(:partition_guid=, SecureRandom.base58(16))
         child.save!
       end.to raise_error ActiveRecord::RecordInvalid
@@ -63,27 +63,27 @@ RSpec.describe Child, type: :model do
       child.generate_encryption_epoch
 
       Timecop.freeze(Time.now + 1.year) do
-        new_child = build :child, proxy: proxy
+        new_child = build(:child, proxy: proxy)
         new_child.save!
         expect(new_child.encryption_epoch).to eq(child.encryption_epoch + 1.year)
       end
     end
 
     it 'sets an encryption epoch on create when it is blank' do
-      child = build :child, proxy: proxy, encryption_epoch: ''
+      child = build(:child, proxy: proxy, encryption_epoch: '')
       child.save!
       expect(child.send(:encryption_epoch)).not_to be_blank
     end
 
     it 'sets an encryption epoch on create when it is nil' do
-      child = build :child, proxy: proxy, encryption_epoch: nil
+      child = build(:child, proxy: proxy, encryption_epoch: nil)
       child.save!
       expect(child.send(:encryption_epoch)).not_to be_blank
     end
 
     it 'cannot be changed' do
       expect do
-        child = create :child, proxy: proxy
+        child = create(:child, proxy: proxy)
         child.send(:encryption_epoch=, SecureRandom.base58(16))
         child.save!
       end.to raise_error ActiveRecord::RecordInvalid
@@ -96,7 +96,7 @@ RSpec.describe Child, type: :model do
     end
 
     it 'raises an exception when proxy is nil' do
-      child = build :child, proxy: nil
+      child = build(:child, proxy: nil)
 
       expect { child.provider_partition_guid }.to raise_exception(ActiveRecord::RecordInvalid)
     end

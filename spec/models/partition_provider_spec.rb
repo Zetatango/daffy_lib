@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe PartitionProvider do
-  let(:partition_provider) { create :partition_provider }
+  let(:partition_provider) { create(:partition_provider) }
 
   it 'has a guid' do
     expect(partition_provider).to respond_to(:guid)

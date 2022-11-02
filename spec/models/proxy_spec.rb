@@ -2,9 +2,9 @@
 
 require 'spec_helper'
 
-RSpec.describe Proxy, type: :model do
-  let(:partition_provider) { create :partition_provider }
-  let(:proxy) { create :proxy, partition_provider_guid: partition_provider.guid }
+RSpec.describe Proxy do
+  let(:partition_provider) { create(:partition_provider) }
+  let(:proxy) { create(:proxy, partition_provider_guid: partition_provider.guid) }
 
   it 'requires a partition_provider_guid' do
     expect { described_class.create! }.to raise_exception(ActiveRecord::NotNullViolation)

@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 RSpec.describe DaffyLib::StringValidator, type: :validator do
-  let(:proxy) { create :proxy }
+  let(:proxy) { create(:proxy) }
 
   describe 'string validator' do
     it 'fails validation if attribute contains invalid characters' do
