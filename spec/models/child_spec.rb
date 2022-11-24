@@ -25,7 +25,7 @@ RSpec.describe Child do
   end
 
   it 'has value as an encrypted attribute' do
-    expect(child.encrypted_attributes.keys).to include(:value)
+    expect(child.attr_encrypted_encrypted_attributes.keys).to include(:value)
   end
 
   describe '#partition_guid' do
