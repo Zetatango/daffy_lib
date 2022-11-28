@@ -1,7 +1,6 @@
 GIT
   remote: https://github.com/Zetatango/attr_encrypted
-  revision: c0fd91eaba47e57675c86f0a35b6f46335fb0d67
-  branch: feat_michellefoy_rails-7-support
+  revision: d75795ec86f9980dfc12235b7eb4ee7834c80f85
   specs:
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
