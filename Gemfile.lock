@@ -1,7 +1,7 @@
 GIT
-  remote: https://github.com/PagerTree/attr_encrypted
-  revision: df02ab0b9547220b2859317d1af8a4280b0fae44
-  branch: rails-7-0-support
+  remote: https://github.com/Zetatango/attr_encrypted
+  revision: c0fd91eaba47e57675c86f0a35b6f46335fb0d67
+  branch: feat_michellefoy_rails-7-support
   specs:
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
