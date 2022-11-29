@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Zetatango/attr_encrypted
-  revision: d75795ec86f9980dfc12235b7eb4ee7834c80f85
+  revision: 54cd632c3a4a40d5a7fd67a0f22f78e042c99d4a
   specs:
     attr_encrypted (3.1.0)
       encryptor (~> 3.0.0)
