@@ -12,7 +12,7 @@ class DaffyLib::StringValidator < ActiveModel::Validator
 
       sanitized_attr = ActionController::Base.helpers.sanitize(record[field])
       decoded_attr = Nokogiri::HTML.parse(sanitized_attr.to_s)
-      record.errors[field] << 'contains invalid characters...' unless record[field] == decoded_attr.text || record[field].blank?
+      record.errors.add(field, 'contains invalid characters...') unless record[field] == decoded_attr.text || record[field].blank?
     end
   end
 end
