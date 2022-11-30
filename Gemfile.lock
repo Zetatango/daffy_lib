@@ -250,7 +250,7 @@ GEM
     sqlite3 (1.5.4)
       mini_portile2 (~> 2.8.0)
     thor (1.2.1)
-    timecop (0.9.5)
+    timecop (0.9.6)
     timeout (0.3.0)
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
