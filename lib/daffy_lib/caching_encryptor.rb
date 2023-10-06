@@ -6,8 +6,8 @@ class DaffyLib::CachingEncryptor
   class DecryptionFailedException < CachingEncryptorException; end
   class InvalidParameterException < CachingEncryptorException; end
 
-  def self.zt_encrypt(*args, &_block)
-    data, partition_guid, encryption_epoch, expires_in, cmk_key_id = validate_encrypt_params(*args)
+  def self.zt_encrypt(*, &)
+    data, partition_guid, encryption_epoch, expires_in, cmk_key_id = validate_encrypt_params(*)
 
     kms = DaffyLib::KeyManagementService.new(partition_guid, expires_in, cmk_key_id)
 
@@ -37,13 +37,13 @@ class DaffyLib::CachingEncryptor
     raise EncryptionFailedException
   end
 
-  def self.zt_decrypt(*args, &block)
-    value, expires_in, cmk_key_id = validate_decrypt_params(*args)
+  def self.zt_decrypt(*, &block)
+    value, expires_in, cmk_key_id = validate_decrypt_params(*)
 
     ciphertext_info = JSON.parse(value, symbolize_names: true)
 
     # Call the legacy decrypt function if there is no key_guid present
-    return legacy_decrypt(*args, block) unless ciphertext_info.key?(:key_guid)
+    return legacy_decrypt(*, block) unless ciphertext_info.key?(:key_guid)
 
     key_guid = ciphertext_info[:key_guid]
     ciphertext = Base64.decode64(ciphertext_info[:data])
@@ -77,7 +77,7 @@ class DaffyLib::CachingEncryptor
     raise DecryptionFailedException
   end
 
-  def self.legacy_decrypt(*args, &_block)
+  def self.legacy_decrypt(*args, &)
     ciphertext_data = JSON.parse(args.first[:value], symbolize_names: true)
     ciphertext_key = Base64.decode64(ciphertext_data[:key])
     ciphertext = Base64.decode64(ciphertext_data[:data])

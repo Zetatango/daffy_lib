@@ -5,7 +5,7 @@ require 'active_support'
 module DaffyLib::HasGuid
   extend ActiveSupport::Concern
 
-  REGEXP = /^\w+_\w+$/.freeze
+  REGEXP = /^\w+_\w+$/
 
   mattr_accessor :registry do
     {}

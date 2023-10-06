@@ -7,9 +7,9 @@ updates:
     interval: daily
   open-pull-requests-limit: 10
   reviewers:
-  - kirmsmithzt
+  - dragoszt
   assignees:
-  - kirksmithzt
+  - dragoszt
   ignore:
   - dependency-name: rubocop
     versions:

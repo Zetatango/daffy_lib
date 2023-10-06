@@ -93,7 +93,7 @@ RSpec.describe DaffyLib::KeyManagementService, type: :request do
     end
 
     it 'does not make a call to PorkyLib when a key already exists' do
-      create(:encryption_key, partition_guid: partition_guid, key_epoch: encryption_epoch)
+      create(:encryption_key, partition_guid:, key_epoch: encryption_epoch)
 
       service.find_or_create_encryption_key(encryption_epoch)
 
@@ -160,7 +160,7 @@ RSpec.describe DaffyLib::KeyManagementService, type: :request do
     end
 
     it 'returns an EncryptionKey with the correct key_epoch on successful find' do
-      create(:encryption_key, partition_guid: partition_guid, key_epoch: encryption_epoch)
+      create(:encryption_key, partition_guid:, key_epoch: encryption_epoch)
 
       key = service.find_or_create_encryption_key(encryption_epoch)
 
@@ -180,7 +180,7 @@ RSpec.describe DaffyLib::KeyManagementService, type: :request do
     end
 
     it 'does not create a new key when one already exists' do
-      create(:encryption_key, partition_guid: partition_guid, key_epoch: described_class.encryption_key_epoch(Time.now.utc))
+      create(:encryption_key, partition_guid:, key_epoch: described_class.encryption_key_epoch(Time.now.utc))
 
       expect do
         service.find_or_create_encryption_key(encryption_epoch)
@@ -196,7 +196,7 @@ RSpec.describe DaffyLib::KeyManagementService, type: :request do
     end
 
     it 'returns the correct guid' do
-      key = create(:encryption_key, partition_guid: partition_guid, key_epoch: described_class.encryption_key_epoch(Time.now.utc))
+      key = create(:encryption_key, partition_guid:, key_epoch: described_class.encryption_key_epoch(Time.now.utc))
 
       expect(service.find_or_create_encryption_key(encryption_epoch).guid).to eq(key.guid)
     end
@@ -213,7 +213,7 @@ RSpec.describe DaffyLib::KeyManagementService, type: :request do
   describe '#retrieve_plaintext_key' do
     let(:raw_ciphertext_key) { SecureRandom.base58(16) }
     let(:encrypted_data_encryption_key) { Base64.encode64(raw_ciphertext_key) }
-    let(:encryption_key) { create(:encryption_key, encrypted_data_encryption_key: encrypted_data_encryption_key) }
+    let(:encryption_key) { create(:encryption_key, encrypted_data_encryption_key:) }
     let(:plaintext_key) { SecureRandom.base58(16) }
 
     before do

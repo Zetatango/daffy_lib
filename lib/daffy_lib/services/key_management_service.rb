@@ -12,7 +12,7 @@ class DaffyLib::KeyManagementService
   KEY_MANAGEMENT_SERVICE_CACHE_NAMESPACE = :key_management_service
   KEY_VERSION = 'KeyManagementService::V1'
 
-  RECORD_NOT_UNIQUE_REGEX = /has already been taken/.freeze
+  RECORD_NOT_UNIQUE_REGEX = /has already been taken/
 
   def initialize(partition_guid, expires_in, cmk_key_id)
     raise InvalidParameterException unless partition_guid.present? && expires_in.present? && cmk_key_id.present?
