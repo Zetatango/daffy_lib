@@ -112,8 +112,9 @@ GEM
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
-    codecov (0.6.0)
-      simplecov (>= 0.15, < 0.22)
+    codecov (0.2.12)
+      json
+      simplecov
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
     crass (1.0.6)
@@ -284,7 +285,7 @@ GEM
     rubocop_runner (2.2.1)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    simplecov (0.21.2)
+    simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
       simplecov_json_formatter (~> 0.1)
