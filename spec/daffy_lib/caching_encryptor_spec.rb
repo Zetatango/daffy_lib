@@ -17,10 +17,10 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
   # rubocop:disable RSpec/VerifiedDoubleReference
   let(:porkylib_encryption_info) do
-    instance_double('Encryption Info', ciphertext: ciphertext, nonce: nonce)
+    instance_double('Encryption Info', ciphertext:, nonce:)
   end
   let(:porkylib_decryption_info) do
-    instance_double('Decryption Info', plaintext: plaintext)
+    instance_double('Decryption Info', plaintext:)
   end
   # rubocop:enable RSpec/VerifiedDoubleReference
 
@@ -29,8 +29,8 @@ RSpec.describe DaffyLib::CachingEncryptor do
       value: plaintext,
       partition_guid: encryption_key.partition_guid,
       encryption_epoch: encryption_key.key_epoch,
-      expires_in: expires_in,
-      cmk_key_id: cmk_key_id
+      expires_in:,
+      cmk_key_id:
     }]
   end
   let(:decryption_args) do
@@ -41,8 +41,8 @@ RSpec.describe DaffyLib::CachingEncryptor do
         data: Base64.encode64(ciphertext),
         nonce: Base64.encode64(nonce)
       }.to_json,
-      expires_in: expires_in,
-      cmk_key_id: cmk_key_id
+      expires_in:,
+      cmk_key_id:
     }]
   end
 
@@ -51,11 +51,9 @@ RSpec.describe DaffyLib::CachingEncryptor do
 
   before do
     allow(DaffyLib::KeyManagementService).to receive(:new).and_return(kms)
-    allow(kms).to receive(:find_or_create_encryption_key).and_return(encryption_key)
-    allow(kms).to receive(:retrieve_plaintext_key).and_return(plaintext_key)
+    allow(kms).to receive_messages(find_or_create_encryption_key: encryption_key, retrieve_plaintext_key: plaintext_key)
 
-    allow(PorkyLib::Symmetric.instance).to receive(:encrypt_with_key).and_return(porkylib_encryption_info)
-    allow(PorkyLib::Symmetric.instance).to receive(:decrypt_with_key).and_return(porkylib_decryption_info)
+    allow(PorkyLib::Symmetric.instance).to receive_messages(encrypt_with_key: porkylib_encryption_info, decrypt_with_key: porkylib_decryption_info)
   end
 
   describe '#encrypt' do
@@ -146,8 +144,8 @@ RSpec.describe DaffyLib::CachingEncryptor do
     it 'raises a DecryptionFailedException on a JSON parse error' do
       decryption_args = [{
         value: 'this is not { valid => json }: here',
-        expires_in: expires_in,
-        cmk_key_id: cmk_key_id
+        expires_in:,
+        cmk_key_id:
       }]
 
       expect { caching_encryptor.zt_decrypt(*decryption_args) }.to raise_exception(DaffyLib::CachingEncryptor::DecryptionFailedException)
@@ -160,10 +158,10 @@ RSpec.describe DaffyLib::CachingEncryptor do
           key_guid: "dek_#{SecureRandom.base58(16)}",
           key: encryption_key.encrypted_data_encryption_key,
           data: ciphertext,
-          nonce: nonce
+          nonce:
         }.to_json,
-        expires_in: expires_in,
-        cmk_key_id: cmk_key_id
+        expires_in:,
+        cmk_key_id:
       }]
 
       expect { caching_encryptor.zt_decrypt(*decryption_args) }.to raise_exception(DaffyLib::CachingEncryptor::DecryptionFailedException)
@@ -176,10 +174,10 @@ RSpec.describe DaffyLib::CachingEncryptor do
         value: {
           key: encryption_key.encrypted_data_encryption_key,
           data: ciphertext,
-          nonce: nonce
+          nonce:
         }.to_json,
-        expires_in: expires_in,
-        cmk_key_id: cmk_key_id
+        expires_in:,
+        cmk_key_id:
       }]
 
       caching_encryptor.zt_decrypt(*decryption_args)

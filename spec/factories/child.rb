@@ -5,6 +5,6 @@ require './spec/models/child'
 
 FactoryBot.define do
   factory :child, class: 'Child' do
-    association :proxy
+    proxy
   end
 end
