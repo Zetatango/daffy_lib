@@ -33,7 +33,7 @@ RSpec.describe DaffyLib::EncryptionKey, type: :model do
     %i[partition_guid key_epoch encrypted_data_encryption_key version].each do |attribute|
       key = build(:encryption_key)
 
-      key.send("#{attribute}=", nil)
+      key.send(:"#{attribute}=", nil)
 
       expect(key).not_to be_valid
     end
@@ -43,7 +43,7 @@ RSpec.describe DaffyLib::EncryptionKey, type: :model do
     %i[partition_guid encrypted_data_encryption_key version].each do |attribute|
       key = build(:encryption_key)
 
-      key.send("#{attribute}=", '')
+      key.send(:"#{attribute}=", '')
 
       expect(key).not_to be_valid
     end

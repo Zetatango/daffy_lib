@@ -65,7 +65,7 @@ namespace :db do
       model_classname.all.each do |record|
         encrypted_attributes.each do |attribute|
           value = record.send(attribute)
-          record.send("#{attribute}=", value) unless value.blank?
+          record.send(:"#{attribute}=", value) unless value.blank?
         end
 
         record.save!(validate: false)
