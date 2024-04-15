@@ -222,7 +222,7 @@ GEM
     rake (13.2.1)
     rbnacl (7.1.1)
       ffi
-    rdoc (6.6.2)
+    rdoc (6.6.3.1)
       psych (>= 4.0.0)
     redis (5.1.0)
       redis-client (>= 0.17.0)
