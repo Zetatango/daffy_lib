@@ -72,8 +72,19 @@ class DaffyLib::KeyManagementService
 
     encoded_key = Base64.encode64(data_encryption_key)
 
-    key = DaffyLib::EncryptionKey.create!(partition_guid: @partition_guid, key_epoch: encryption_epoch,
-                                          encrypted_data_encryption_key: encoded_key, version: KEY_VERSION)
+    # requires_new: true opens a real SAVEPOINT rather than silently joining
+    # whatever transaction the caller already has open. Without it, a
+    # concurrent caller racing to create the same partition_guid/key_epoch row
+    # doesn't just raise RecordNotUnique here -- it poisons the caller's entire
+    # surrounding transaction, so the "retrying find" recovery below (and
+    # anything else the caller does on that connection afterward) fails too,
+    # with PG::InFailedSqlTransaction, since Postgres rejects every statement
+    # on a transaction until it's rolled back. The savepoint confines that
+    # rollback to just this insert.
+    key = ActiveRecord::Base.transaction(requires_new: true) do
+      DaffyLib::EncryptionKey.create!(partition_guid: @partition_guid, key_epoch: encryption_epoch,
+                                      encrypted_data_encryption_key: encoded_key, version: KEY_VERSION)
+    end
 
     cache_plaintext_key(key, plaintext_key)
 
