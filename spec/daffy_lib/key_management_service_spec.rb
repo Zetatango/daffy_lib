@@ -147,6 +147,26 @@ RSpec.describe DaffyLib::KeyManagementService, type: :request do
       expect(DaffyLib::EncryptionKey).to have_received(:find_by).twice
     end
 
+    # A concurrent caller racing to create the same partition_guid/key_epoch row
+    # doesn't just raise RecordNotUnique -- on Postgres it also poisons whatever
+    # transaction the caller already has open, so the "retrying find" recovery
+    # above fails too (PG::InFailedSqlTransaction), since every statement on
+    # that connection is rejected until a rollback. requires_new: true opens a
+    # real SAVEPOINT around the create so that rollback is confined to just this
+    # insert. This can only be asserted via the transaction call itself, not by
+    # reproducing the failure end-to-end: this suite runs against SQLite
+    # (spec_helper.rb), which -- unlike Postgres -- does not abort the whole
+    # transaction on a single failed statement, so a real duplicate-key create
+    # here would recover even without the savepoint and the regression would go
+    # uncaught.
+    it 'wraps the create in a real savepoint (requires_new: true), not a plain nested transaction' do
+      allow(ActiveRecord::Base).to receive(:transaction).and_call_original
+
+      service.find_or_create_encryption_key(encryption_epoch)
+
+      expect(ActiveRecord::Base).to have_received(:transaction).with(requires_new: true)
+    end
+
     it 'does not raise an exception when caching the plaintext encryption key fails' do
       allow(Rails.cache).to receive(:write).and_raise(Redis::TimeoutError)
 
